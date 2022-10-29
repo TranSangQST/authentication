@@ -1,0 +1,44 @@
+.input-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-bottom: 16px;
+    width: 100%;
+    font-family: Raleway-Black;
+}
+
+.input-label {
+    margin-bottom: 10px;
+    font-family: Raleway-Black;
+    font-size: 16px;
+    font-weight: 600;
+    color: rgba(33, 33, 33, 0.8);
+}
+.input-field {
+    line-height: 1.2;
+
+    display: block;
+    width: 100%;
+    background: #e6e6e6;
+    height: 40px;
+    border-radius: 3px;
+    padding: 30px 15px;
+    border: solid 1px rgba(0, 0, 0, 0.1);
+    outline: none;
+}
+
+.input-field,
+.input-field::placeholder {
+    font-weight: 500;
+    font-family: Raleway-SemiBold;
+    font-size: 18px;
+    color: rgba(104, 104, 104, 0.7);
+}
+
+.input-error {
+    margin-top: 10px;
+    font-weight: 400;
+    color: red;
+    text-decoration: none;
+    text-align: left;
+}

@@ -1,0 +1,36 @@
+.register-form-wrapper {
+    background-color: rgba(255, 255, 255);
+    width: 450px;
+    border-radius: 5px;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    padding: 20px 30px;
+}
+
+.register-form-title {
+    margin: 10px 0;
+    padding: 0;
+    font-family: Raleway-Black;
+    font-size: 30px;
+    /* color: #333; */
+    color: #d33f8d;
+    line-height: 1.2;
+    text-transform: uppercase;
+    text-align: center;
+    width: 100%;
+    display: block;
+}
+
+.register-form-title--success {
+    color: #11df64;
+    font-family: Raleway-Black;
+    font-size: 20px;
+}
+
+.register-form-error {
+    color: red;
+}
+
+.register-form {
+    display: flex;
+    flex-direction: column;
+}
