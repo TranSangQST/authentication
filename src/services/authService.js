@@ -3,6 +3,8 @@ import axios from "axios";
 import { baseApi } from "../config/api";
 
 const login = async (email, password) => {
+    console.log("baseApi: ", baseApi);
+
     const loginApi = `${baseApi}/auth/login`;
     const res = await axios.post(loginApi, {
         email: email,
