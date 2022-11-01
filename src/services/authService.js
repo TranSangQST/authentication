@@ -3,8 +3,6 @@ import axios from "axios";
 import { baseApi } from "../config/api";
 
 const login = async (email, password) => {
-    console.log("baseApi: ", baseApi);
-
     const loginApi = `${baseApi}/auth/login`;
     const res = await axios.post(loginApi, {
         email: email,
@@ -33,6 +31,7 @@ const logout = async () => {
 };
 
 const getCurrentAccount = async () => {
+    console.log("baseApi: ", baseApi);
     const getCurrentAccountApi = `${baseApi}/auth/getCurrentAccount`;
     axios.interceptors.request.use(function (config) {
         const token = localStorage.getItem("token");
