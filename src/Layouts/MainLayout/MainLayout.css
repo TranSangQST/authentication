@@ -1,0 +1,12 @@
+.main-layout-wrapper {
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 15px;
+    background-image: url("/public/background.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+}

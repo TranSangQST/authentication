@@ -25,13 +25,10 @@
     cursor: pointer;
 
     margin-top: 20px;
-}
-.register {
-    background: #d33f8d;
-    color: #fff;
+    text-decoration: none;
 }
 
-.back {
-    background: #11df64;
+.auth {
+    background: #d33f8d;
     color: #fff;
 }

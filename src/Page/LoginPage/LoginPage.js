@@ -1,17 +1,17 @@
 import { useForm } from "react-hook-form";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { Navigate } from "react-router-dom";
 
-import "react-toastify/dist/ReactToastify.css";
-
-import { addAccount, checkExistEmail } from "../../services/accountService";
+import { checkExistEmail } from "../../services/accountService";
 
 import AuthForm from "../../components/AuthForm";
 import Input from "../../components/Input";
-import "./RegisterPage.css";
+import "./LoginPage.css";
+import { login } from "../../services/authService";
 import { toast } from "react-toastify";
+import { CurrentAccountContext } from "../../context/CurrentAccountContext";
 
-function RegisterPage() {
+function LoginPage() {
     const {
         register,
         handleSubmit,
@@ -20,49 +20,43 @@ function RegisterPage() {
     } = useForm({
         mode: "onChange",
         defaultValues: {
-            fullname: "",
             email: "",
             password: "",
-            confirmPassword: "",
         },
         criteriaMode: "all",
     });
 
+    const currentAccountContext = useContext(CurrentAccountContext);
     const [success, setSuccess] = useState(false);
 
-    const handleRegister = async ({ fullname, email, password }) => {
-        const addNewAccount = await addAccount(fullname, email, password);
-        if (addNewAccount) {
+    const handleLogin = async ({ email, password }) => {
+        const loginData = await login(email, password);
+        if (loginData) {
+            localStorage.setItem("token", loginData.accessToken);
+
+            currentAccountContext.changeCurrentAccount(loginData.account);
             setSuccess(true);
-            toast("Register successfully");
+            toast("Login successfully");
+        } else {
+            toast("Wrong email or password");
         }
     };
 
     const requireErrorMessage = "field can not empty";
 
     if (success) {
-        return <Navigate to={"/login"} />;
+        return <Navigate to={"/"} />;
     }
 
     return (
         <AuthForm
-            title="Register"
-            btnTitle="Register"
-            redirectMessage="Already have account"
-            redirectTitle="Login"
-            redirectLink="/login"
-            handleAuthClick={handleSubmit(handleRegister)}
+            title="Login"
+            btnTitle="Login"
+            redirectMessage="No account"
+            redirectTitle="Register"
+            redirectLink="/register"
+            handleAuthClick={handleSubmit(handleLogin)}
         >
-            <Input
-                placeholder="Fullname"
-                label={"Fullname"}
-                showLabel
-                type={"text"}
-                {...register("fullname", {
-                    required: requireErrorMessage,
-                })}
-                error={errors.fullname}
-            />
             <Input
                 placeholder="Email"
                 label={"Email"}
@@ -78,7 +72,7 @@ function RegisterPage() {
                         const checkingExistEmail = await checkExistEmail(
                             watch("email")
                         );
-                        return !checkingExistEmail || "already exist";
+                        return checkingExistEmail || "does not exist";
                     },
                 })}
                 error={errors.email}
@@ -93,19 +87,8 @@ function RegisterPage() {
                 })}
                 error={errors.password}
             />
-            <Input
-                placeholder="Confirm password"
-                label={"Confirm password"}
-                showLabel
-                type={"password"}
-                {...register("confirmPassword", {
-                    validate: (value) =>
-                        value === watch("password", "") || "do not match",
-                })}
-                error={errors.confirmPassword}
-            />
         </AuthForm>
     );
 }
 
-export default RegisterPage;
+export default LoginPage;

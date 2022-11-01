@@ -10,17 +10,16 @@ const addAccount = async (full_name, email, password) => {
         full_name: full_name,
     });
     const result = res.data;
-    // console.log("addAccountApi: ", result);
+
     return result;
 };
 
 const checkExistEmail = async (email) => {
     if (!email) return false;
     const checkExistAccountApi = `${baseApi}/account/isExist/email/${email}`;
-    // console.log("checkExistAccountApi: ", checkExistAccountApi);
     const res = await axios.get(checkExistAccountApi);
     const result = res.data;
-    // console.log("checkExistAccountApi: ", result);
+    console.log("checkExistAccountApi: ", result);
     return result;
 };
 

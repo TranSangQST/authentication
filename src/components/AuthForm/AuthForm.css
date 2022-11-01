@@ -1,4 +1,4 @@
-.register-form-wrapper {
+.auth-form-wrapper {
     background-color: rgba(255, 255, 255);
     width: 450px;
     border-radius: 5px;
@@ -6,7 +6,7 @@
     padding: 20px 30px;
 }
 
-.register-form-title {
+.auth-form-title {
     margin: 10px 0;
     padding: 0;
     font-family: Raleway-Black;
@@ -20,17 +20,29 @@
     display: block;
 }
 
-.register-form-title--success {
+.auth-form-title--success {
     color: #11df64;
     font-family: Raleway-Black;
     font-size: 20px;
 }
 
-.register-form-error {
+.auth-form-error {
     color: red;
 }
 
-.register-form {
+.auth-form {
     display: flex;
     flex-direction: column;
+}
+
+.auth-form-redirect {
+    margin-top: 20px;
+    font-style: italic;
+}
+.auth-form-redirect-message {
+}
+.auth-form-redirect-link {
+    margin-left: 5px;
+    color: blue;
+    text-decoration: none;
 }
